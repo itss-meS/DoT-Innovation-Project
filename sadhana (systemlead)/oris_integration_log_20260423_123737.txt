@@ -1,0 +1,18 @@
+[2026-04-23 12:37:37] O-RIS Integration Started
+[2026-04-23 12:37:37] Configuration loaded: 2048 elements, 3 users
+[2026-04-23 12:37:37] AI Module initialized successfully
+[2026-04-23 12:37:38] Control System initialized successfully
+[2026-04-23 12:37:38] Visualization System initialized successfully
+[2026-04-23 12:38:05] Error in iteration 160: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 161: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 162: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 163: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 164: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 165: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 166: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 167: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 168: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 169: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:05] Error in iteration 170: Argument must be a Figure object or a positive integer.
+[2026-04-23 12:38:09] Integration test completed successfully
+[2026-04-23 12:38:09] Final reliability: 96.33%
