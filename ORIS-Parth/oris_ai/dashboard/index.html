@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O-RIS AI Beam Steering - 3D Live Dashboard</title>
+    <meta name="description" content="Real-time AI-driven 3D urban beam steering dashboard for the O-RIS metasurface project.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-left">
+            <div class="logo-mark">
+                <svg viewBox="0 0 40 40" width="36" height="36">
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#3B82F6"/>
+                            <stop offset="100%" stop-color="#06B6D4"/>
+                        </linearGradient>
+                    </defs>
+                    <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="url(#logo-grad)" stroke-width="2"/>
+                    <polygon points="20,8 30,14 30,26 20,32 10,26 10,14" fill="url(#logo-grad)" opacity="0.15"/>
+                    <circle cx="20" cy="20" r="4" fill="url(#logo-grad)"/>
+                    <line x1="20" y1="16" x2="20" y2="8" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                    <line x1="23.5" y1="18" x2="29" y2="14" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                    <line x1="23.5" y1="22" x2="29" y2="26" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                    <line x1="20" y1="24" x2="20" y2="32" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                    <line x1="16.5" y1="22" x2="11" y2="26" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                    <line x1="16.5" y1="18" x2="11" y2="14" stroke="url(#logo-grad)" stroke-width="1.5"/>
+                </svg>
+            </div>
+            <div class="header-text">
+                <h1>O-RIS <span class="accent">AI</span> Beam Steering</h1>
+                <p class="subtitle">3D Real-Time PPO Agent • 360 Degree Coverage • Sub-2ms Latency</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="badge hackathon-badge">
+                <span class="badge-dot"></span>
+                DoT 5G Innovation Hackathon 2026
+            </div>
+            <div class="badge team-badge">Team: The Prism of Zero-Lat Futures</div>
+        </div>
+    </header>
+
+    <section id="kpi-strip">
+        <div class="kpi-card" id="kpi-rssi">
+            <div class="kpi-icon">Signal</div>
+            <div class="kpi-data">
+                <span class="kpi-value" id="kpi-rssi-val">-</span>
+                <span class="kpi-unit">dBm</span>
+            </div>
+            <span class="kpi-label">RSSI</span>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-rssi-bar"></div></div>
+        </div>
+        <div class="kpi-card" id="kpi-snr">
+            <div class="kpi-icon">SNR</div>
+            <div class="kpi-data">
+                <span class="kpi-value" id="kpi-snr-val">-</span>
+                <span class="kpi-unit">dB</span>
+            </div>
+            <span class="kpi-label">SNR</span>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-snr-bar"></div></div>
+        </div>
+        <div class="kpi-card" id="kpi-beam">
+            <div class="kpi-icon">Beam</div>
+            <div class="kpi-data">
+                <span class="kpi-value" id="kpi-beam-val">-</span>
+                <span class="kpi-unit">deg</span>
+            </div>
+            <span class="kpi-label">Beam Azimuth</span>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-beam-bar"></div></div>
+        </div>
+        <div class="kpi-card" id="kpi-latency">
+            <div class="kpi-icon">AI</div>
+            <div class="kpi-data">
+                <span class="kpi-value" id="kpi-latency-val">-</span>
+                <span class="kpi-unit">ms</span>
+            </div>
+            <span class="kpi-label">Inference</span>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-latency-bar"></div></div>
+        </div>
+        <div class="kpi-card kpi-gain" id="kpi-gain">
+            <div class="kpi-icon">Gain</div>
+            <div class="kpi-data">
+                <span class="kpi-value" id="kpi-gain-val">-</span>
+                <span class="kpi-unit">dB</span>
+            </div>
+            <span class="kpi-label">RSSI Gain</span>
+            <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-gain-bar"></div></div>
+        </div>
+    </section>
+
+    <main id="main-content">
+        <section id="simulation-panel" class="panel">
+            <div class="panel-header">
+                <h2>3D Urban Canyon Simulation</h2>
+                <div class="panel-controls">
+                    <select id="obstacle-type" class="control-select" title="Choose obstacle type">
+                        <option value="car">Car</option>
+                        <option value="truck">Truck</option>
+                        <option value="bus">Bus</option>
+                        <option value="container">Container</option>
+                        <option value="barricade">Barricade</option>
+                    </select>
+                    <button id="btn-add-obstacle" class="btn btn-secondary" title="Place an obstacle into the city">
+                        <span>+</span> Add Obstacle
+                    </button>
+                    <button id="btn-clear" class="btn btn-ghost" title="Reset user and obstacles">
+                        <span>Reset</span>
+                    </button>
+                    <button id="btn-toggle-view" class="btn btn-ghost" title="Change camera angle">
+                        <span>Camera</span>
+                    </button>
+                </div>
+            </div>
+            <div class="canvas-wrapper" id="three-container">
+                <canvas id="city-canvas"></canvas>
+                <div class="canvas-overlay" id="canvas-overlay">
+                    <span>Click any clear road or open block edge to place the user node</span>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background:#EF4444"></span>Dead zone</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#FBBF24"></span>Weak</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#22C55E"></span>Good</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#166534"></span>Excellent</div>
+                    <div class="legend-item"><span class="legend-dot legend-dot-tower"></span>Source Tower</div>
+                    <div class="legend-item"><span class="legend-dot legend-dot-oris"></span>O-RIS Node</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#E2E8F0"></span>User</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#C84D44"></span>Vehicle Obstacle</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#0F766E"></span>Static Obstacle</div>
+                </div>
+                <div class="camera-info" id="camera-info">
+                    <span>Click to place user | drag to pan | wheel to zoom | press C to change camera</span>
+                </div>
+            </div>
+        </section>
+
+        <aside id="controls-panel">
+            <div class="card ai-card" id="ai-card">
+                <div class="card-header">
+                    <span class="card-title">AI Beam Steering</span>
+                    <span class="status-chip" id="ai-status-chip">OFFLINE</span>
+                </div>
+                <button id="btn-ai-toggle" class="btn-ai" data-state="off">
+                    <div class="ai-btn-glow"></div>
+                    <svg class="ai-icon" viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z" fill="currentColor"/>
+                    </svg>
+                    <span id="ai-btn-text">AI OFF</span>
+                </button>
+                <p class="ai-hint" id="ai-hint">Enable to activate PPO beam steering agent</p>
+            </div>
+
+            <div class="card" id="servo-card">
+                <div class="card-header">
+                    <span class="card-title">Servo Angles (±15°)</span>
+                </div>
+                <div class="servo-grid" id="servo-grid"></div>
+            </div>
+
+            <div class="card" id="phase-card">
+                <div class="card-header">
+                    <span class="card-title">Phase Matrix</span>
+                    <span class="card-subtitle" id="phase-active">0 / 2048 active</span>
+                </div>
+                <canvas id="phase-canvas" width="256" height="32"></canvas>
+            </div>
+
+            <div class="card" id="history-card">
+                <div class="card-header">
+                    <span class="card-title">RSSI History</span>
+                    <span class="card-subtitle" id="rssi-trend">-</span>
+                </div>
+                <canvas id="rssi-chart" width="300" height="100"></canvas>
+            </div>
+
+            <div class="card" id="beam-card">
+                <div class="card-header">
+                    <span class="card-title">Beam Pattern</span>
+                </div>
+                <canvas id="beam-canvas" width="180" height="180"></canvas>
+            </div>
+
+            <div class="card" id="arch-card">
+                <div class="card-header">
+                    <span class="card-title">System Architecture</span>
+                </div>
+                <div class="arch-layers">
+                    <div class="arch-layer layer-3 active">
+                        <span class="layer-num">L3</span>
+                        <div class="layer-info">
+                            <strong>AI/ML Core</strong>
+                            <span>PPO · PyTorch · Gymnasium</span>
+                        </div>
+                        <span class="layer-status">LIVE</span>
+                    </div>
+                    <div class="arch-connector"></div>
+                    <div class="arch-layer layer-2">
+                        <span class="layer-num">L2</span>
+                        <div class="layer-info">
+                            <strong>Matrix Control</strong>
+                            <span>ESP32 · SPI · 2048 states</span>
+                        </div>
+                        <span class="layer-status">READY</span>
+                    </div>
+                    <div class="arch-connector"></div>
+                    <div class="arch-layer layer-1">
+                        <span class="layer-num">L1</span>
+                        <div class="layer-info">
+                            <strong>Metasurface</strong>
+                            <span>8x PCB · BAP64-02 · 3.5GHz</span>
+                        </div>
+                        <span class="layer-status">READY</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer id="main-footer">
+        <div class="footer-left">
+            <span>O-RIS Layer 3 Intelligence</span>
+            <span class="footer-sep">·</span>
+            <span>AI/ML Core</span>
+        </div>
+        <div class="footer-center">
+            <span id="fps-counter">0 FPS</span>
+            <span class="footer-sep">·</span>
+            <span id="connection-status">3D Standalone Mode</span>
+        </div>
+        <div class="footer-right">
+            <span>DoT 5G Innovation Hackathon 2026</span>
+        </div>
+    </footer>
+
+    <div id="presentation-overlay" class="hidden">
+        <div class="pres-banner">
+            <h2>O-RIS AI Beam Steering</h2>
+            <p>PPO Reinforcement Learning • Realistic 3D City • 360 Degree Coverage • Sub-2ms Inference</p>
+            <div class="pres-stats">
+                <div class="pres-stat"><span class="pres-num">+17.2</span><span class="pres-label">dB Gain</span></div>
+                <div class="pres-stat"><span class="pres-num">0.28</span><span class="pres-label">ms Latency</span></div>
+                <div class="pres-stat"><span class="pres-num">100%</span><span class="pres-label">Coverage</span></div>
+                <div class="pres-stat"><span class="pres-num">2056</span><span class="pres-label">Actions</span></div>
+            </div>
+            <button id="btn-start-demo" class="btn btn-primary btn-lg">
+                Launch 3D Interactive Demo
+            </button>
+        </div>
+    </div>
+
+    <script src="simulation.js"></script>
+    <script src="scene3d.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

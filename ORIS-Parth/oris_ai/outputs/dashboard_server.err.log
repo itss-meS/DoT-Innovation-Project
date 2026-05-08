@@ -1,0 +1,16 @@
+::1 - - [25/Apr/2026 10:25:53] "GET / HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:42] "GET / HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:42] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:42] "GET /simulation.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:42] "GET /dashboard.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:42] "GET /scene3d.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:26:43] code 404, message File not found
+::1 - - [25/Apr/2026 10:26:43] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [25/Apr/2026 10:29:40] "GET / HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:29:41] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:29:41] "GET /simulation.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:29:41] "GET /scene3d.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:29:41] "GET /dashboard.js HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:46:28] "GET / HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:47:13] "GET / HTTP/1.1" 200 -
+::1 - - [25/Apr/2026 10:47:13] "GET /scene3d.js HTTP/1.1" 200 -
